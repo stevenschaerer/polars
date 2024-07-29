@@ -18,6 +18,12 @@ if TYPE_CHECKING:
     from polars._typing import PolarsDataType
 
 
+a = pl.select(pl.lit(3.2, dtype=pl.Utf8))
+a
+z = 1
+
+
+
 @pytest.mark.parametrize(
     "input",
     [
