@@ -536,6 +536,60 @@ impl<'a> AnyValue<'a> {
             (AnyValue::Float64(v), DataType::Boolean) => AnyValue::Boolean(*v != f64::default()),
 
             // to string
+            (AnyValue::UInt8(v), DataType::String) => {
+                AnyValue::StringOwned(format_smartstring!("{}", v))
+            },
+            (AnyValue::UInt16(v), DataType::String) => {
+                AnyValue::StringOwned(format_smartstring!("{}", v))
+            },
+            (AnyValue::UInt32(v), DataType::String) => {
+                AnyValue::StringOwned(format_smartstring!("{}", v))
+            },
+            (AnyValue::UInt64(v), DataType::String) => {
+                AnyValue::StringOwned(format_smartstring!("{}", v))
+            },
+            (AnyValue::Int8(v), DataType::String) => {
+                AnyValue::StringOwned(format_smartstring!("{}", v))
+            },
+            (AnyValue::Int16(v), DataType::String) => {
+                AnyValue::StringOwned(format_smartstring!("{}", v))
+            },
+            (AnyValue::Int32(v), DataType::String) => {
+                AnyValue::StringOwned(format_smartstring!("{}", v))
+            },
+            (AnyValue::Int64(v), DataType::String) => {
+                AnyValue::StringOwned(format_smartstring!("{}", v))
+            },
+            (AnyValue::Float32(v), DataType::String) => {
+                AnyValue::StringOwned(format_smartstring!("{}", v))
+            },
+            (AnyValue::Float64(v), DataType::String) => {
+                AnyValue::StringOwned(format_smartstring!("{}", v))
+            },
+            (AnyValue::Boolean(v), DataType::String) => {
+                AnyValue::StringOwned(format_smartstring!("{}", v))
+            },
+            (AnyValue::String(v), DataType::String) => {
+                AnyValue::StringOwned(format_smartstring!("{}", v))
+            },
+            (AnyValue::Binary(v), DataType::String) => {
+                AnyValue::StringOwned(format_smartstring!("{:?}", v))
+            },
+            (AnyValue::Date(v), DataType::String) => {
+                AnyValue::StringOwned(format_smartstring!("{}", v))
+            },
+            (AnyValue::Time(v), DataType::String) => {
+                AnyValue::StringOwned(format_smartstring!("{}", v))
+            },
+            (AnyValue::Datetime(v, tu, tz), DataType::String) => {
+                AnyValue::StringOwned(format_smartstring!("{:?} {} {}", v, tu, tz))
+            },
+            (AnyValue::Duration(v, tu), DataType::String) => {
+                AnyValue::StringOwned(format_smartstring!("{:?} {}", v, tu))
+            },
+            (AnyValue::Decimal(v, scale), DataType::String) => {
+                AnyValue::StringOwned(format_smartstring!("{:?} {}", v, scale))
+            },
             (av, DataType::String) => {
                 AnyValue::StringOwned(format_smartstring!("{}", av.extract::<i64>()?))
             },

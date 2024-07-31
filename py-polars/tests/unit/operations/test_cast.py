@@ -17,8 +17,8 @@ if TYPE_CHECKING:
 
 
 # a = pl.select(pl.lit(1, dtype=pl.Float32).cast(pl.String, strict=False)).item()
-# b = pl.select(pl.lit(1.2, dtype=pl.Float32).cast(pl.String, strict=False)).item()
-# c = pl.select(pl.lit(1.2).cast(pl.String, strict=False)).item()
+b = pl.select(pl.lit(1.2, dtype=pl.Float32).cast(pl.String, strict=False)).item()
+c = pl.select(pl.lit(1.2).cast(pl.String, strict=False)).item()
 d = pl.select((pl.lit(3.2)**2).cast(pl.String, strict=False)).item()
 e = pl.select(((pl.lit(3.2)**2)**0.5).cast(pl.String, strict=False)).item()
 z = 1
