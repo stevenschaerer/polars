@@ -572,24 +572,24 @@ impl<'a> AnyValue<'a> {
             (AnyValue::String(v), DataType::String) => {
                 AnyValue::StringOwned(format_smartstring!("{}", v))
             },
-            (AnyValue::Binary(v), DataType::String) => {
-                AnyValue::StringOwned(format_smartstring!("{:?}", v))
-            },
-            (AnyValue::Date(v), DataType::String) => {
-                AnyValue::StringOwned(format_smartstring!("{}", v))
-            },
-            (AnyValue::Time(v), DataType::String) => {
-                AnyValue::StringOwned(format_smartstring!("{}", v))
-            },
-            (AnyValue::Datetime(v, tu, tz), DataType::String) => {
-                AnyValue::StringOwned(format_smartstring!("{:?} {} {}", v, tu, tz))
-            },
-            (AnyValue::Duration(v, tu), DataType::String) => {
-                AnyValue::StringOwned(format_smartstring!("{:?} {}", v, tu))
-            },
-            (AnyValue::Decimal(v, scale), DataType::String) => {
-                AnyValue::StringOwned(format_smartstring!("{:?} {}", v, scale))
-            },
+            // (AnyValue::Binary(v), DataType::String) => {
+            //     AnyValue::StringOwned(format_smartstring!("{:?}", v))
+            // },
+            // (AnyValue::Date(v), DataType::String) => {
+            //     AnyValue::StringOwned(format_smartstring!("{}", v))
+            // },
+            // (AnyValue::Time(v), DataType::String) => {
+            //     AnyValue::StringOwned(format_smartstring!("{}", v))
+            // },
+            // (AnyValue::Datetime(v, tu, tz), DataType::String) => {
+            //     AnyValue::StringOwned(format_smartstring!("{:?} {} {}", v, tu, tz))
+            // },
+            // (AnyValue::Duration(v, tu), DataType::String) => {
+            //     AnyValue::StringOwned(format_smartstring!("{:?} {}", v, tu))
+            // },
+            // (AnyValue::Decimal(v, scale), DataType::String) => {
+            //     AnyValue::StringOwned(format_smartstring!("{:?} {}", v, scale))
+            // },
             (av, DataType::String) => {
                 AnyValue::StringOwned(format_smartstring!("{}", av.extract::<i64>()?))
             },

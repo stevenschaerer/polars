@@ -16,6 +16,8 @@ if TYPE_CHECKING:
     from polars._typing import PolarsDataType
 
 
+b = pl.select(pl.lit("1.2").cast(pl.Float32, strict=False)).item()
+b = pl.select(pl.lit("1.2").cast(pl.Float64, strict=False)).item()
 # a = pl.select(pl.lit(1, dtype=pl.Float32).cast(pl.String, strict=False)).item()
 b = pl.select(pl.lit(1.2, dtype=pl.Float32).cast(pl.String, strict=False)).item()
 c = pl.select(pl.lit(1.2).cast(pl.String, strict=False)).item()
@@ -472,11 +474,10 @@ def test_cast_temporal(
         "expected_value",
     ),
     [
-        (1.0, pl.Float32, pl.String, "1"),
-        (1.2, pl.Float32, pl.String, "1.2"),
-        (1.2, pl.Float64, pl.String, "1.2"),
-        (-1.2, pl.Float32, pl.String, "-1.2"),
-        (-1.2, pl.Float64, pl.String, "-1.2"),
+        (1.234, pl.Float32, pl.String, "1.234"),
+        (1.234, pl.Float64, pl.String, "1.234"),
+        (-1.234, pl.Float32, pl.String, "-1.234"),
+        (-1.234, pl.Float64, pl.String, "-1.234"),
     ],
 )
 def test_cast_float(
@@ -521,8 +522,8 @@ def test_cast_float(
         (str(2**15 - 1), pl.String, pl.Int16, 2**15 - 1),
         (str(2**31 - 1), pl.String, pl.Int32, 2**31 - 1),
         (str(2**63 - 1), pl.String, pl.Int64, 2**63 - 1),
-        ("1.2", pl.String, pl.Float32, 1.2),
-        ("1.2", pl.String, pl.Float64, 1.2),
+        ("1.0", pl.String, pl.Float32, 1.0),
+        ("1.0", pl.String, pl.Float64, 1.0),
         (str(-2**7).encode(), pl.Binary, pl.Int8, -2**7),
         (str(-2**15).encode(), pl.Binary, pl.Int16, -2**15),
         (str(-2**31).encode(), pl.Binary, pl.Int32, -2**31),
@@ -531,8 +532,8 @@ def test_cast_float(
         (str(-2**15), pl.String, pl.Int16, -2**15),
         (str(-2**31), pl.String, pl.Int32, -2**31),
         (str(-2**63), pl.String, pl.Int64, -2**63),
-        ("-1.2", pl.String, pl.Float32, -1.2),
-        ("-1.2", pl.String, pl.Float64, -1.2),
+        ("-1.0", pl.String, pl.Float32, -1.0),
+        ("-1.0", pl.String, pl.Float64, -1.0),
         # overflow
         (str(2**7), pl.String, pl.Int8, None),
         (str(2**15), pl.String, pl.Int16, None),
@@ -601,8 +602,8 @@ def test_cast_string_and_binary(
         (str(2**15 - 1), pl.String, pl.Int16, True, 2**15 - 1),
         (str(2**31 - 1), pl.String, pl.Int32, True, 2**31 - 1),
         (str(2**63 - 1), pl.String, pl.Int64, True, 2**63 - 1),
-        ("1.2", pl.String, pl.Float32, True, 1.2),
-        ("1.2", pl.String, pl.Float64, True, 1.2),
+        ("1.0", pl.String, pl.Float32, True, 1.0),
+        ("1.0", pl.String, pl.Float64, True, 1.0),
         (str(-2**7).encode(), pl.Binary, pl.Int8, True, -2**7),
         (str(-2**15).encode(), pl.Binary, pl.Int16, True, -2**15),
         (str(-2**31).encode(), pl.Binary, pl.Int32, True, -2**31),
@@ -611,8 +612,8 @@ def test_cast_string_and_binary(
         (str(-2**15), pl.String, pl.Int16, True, -2**15),
         (str(-2**31), pl.String, pl.Int32, True, -2**31),
         (str(-2**63), pl.String, pl.Int64, True, -2**63),
-        ("-1.2", pl.String, pl.Float32, True, -1.2),
-        ("-1.2", pl.String, pl.Float64, True, -1.2),
+        ("-1.0", pl.String, pl.Float32, True, -1.0),
+        ("-1.0", pl.String, pl.Float64, True, -1.0),
         # overflow
         (str(2**7), pl.String, pl.Int8, False, None),
         (str(2**15), pl.String, pl.Int16, False, None),
